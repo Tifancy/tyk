@@ -7,6 +7,7 @@ import (
 	"gopkg.in/vmihailenco/msgpack.v2"
 	"fmt"
 	"hash"
+	"time"
 )
 
 type HashType string
@@ -72,6 +73,13 @@ type SessionState struct {
 }
 
 var murmurHasher hash.Hash32 = murmur3.New32()
+
+func (s *SessionState) IsExpired() bool {
+	if time.Now().After(time.Unix(s.Expires, 0)) {
+		return true
+	}
+	return false
+}
 
 func (s *SessionState) SetFirstSeenHash() {
 	encoded, err := msgpack.Marshal(s)
