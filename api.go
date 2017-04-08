@@ -116,6 +116,9 @@ func doAddOrUpdate(keyName string, newSession SessionState, dontReset bool) erro
 				if !thisAPISpec.DontSetQuotasOnCreate {
 					// Reset quote by default
 					if !dontReset {
+						if config.UseDistributedQuotaCounter {
+							QuotaHandler.TagDelete(keyName)
+						}
 						thisAPISpec.SessionManager.ResetQuota(keyName, newSession)
 						newSession.QuotaRenews = time.Now().Unix() + newSession.QuotaRenewalRate
 					}
