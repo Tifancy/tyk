@@ -223,6 +223,8 @@ type Config struct {
 	MaxIdleConnsPerHost               int                                      `bson:"max_idle_connections_per_host" json:"max_idle_connections_per_host"`
 	ReloadWaitTime                    int                                      `bson:"reload_wait_time" json:"reload_wait_time"`
 	UseDistributedQuotaCounter 	  bool 					   `bson:"use_distributed_counter" json:"use_distributed_counter"`
+	DistributedQuotaFlushIntervalInMS int 					   `bson:"distributed_quota_flush_interval_in_ms" json:"distributed_quota_flush_interval_in_ms"`
+	DQSetMaster 			  bool 					   `bson:"distributed_quota_set_master" json:"distributed_quota_set_master"`
 }
 
 type CertData struct {

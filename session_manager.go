@@ -125,6 +125,7 @@ func (l SessionLimiter) ForwardMessage(currentSession *SessionState, key string,
 				return false, 2
 			}
 		}
+
 	}
 
 	return true, 0
